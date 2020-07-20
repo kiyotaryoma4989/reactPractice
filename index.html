@@ -10,6 +10,13 @@
 <body>
 	<h1>React</h1>
 	<div id="root">wait...</div>
+	<script type="text/javascript">
+		let dom = document.querySelector("#root");
+		let element = React.createElement(
+			"p",{},"Hello React!"
+		);
+		ReactDOM.render(element, dom);
+	</script>
 
 </body>
 </html>
