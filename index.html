@@ -8,12 +8,6 @@
     <script type="text/javascript" src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
     <style type="text/css">
-        #root {
-            cursor: pointer;
-            font-size: 20px;
-            background: lightblue;
-            padding: 1px 20px;
-        }
     </style>
 </head>
 <body>
@@ -22,9 +16,6 @@
     <script type="text/babel">
         let dom = document.querySelector("#root");
 
-        let message_true = "メッセージを表示します。";
-        let message_false = "メッセージはありません。"
-
         const msg = {
             fontSize: "20px",
             fontWeight: "bold",
@@ -32,15 +23,40 @@
             border: "2px solid green"
         }
 
-        let flg = false;
+        class Rect extends React.Component {
+            x = 0;
+            y = 0;
+            width = 0;
+            height = 0;
+            color = "white";
+            style = {};
+
+            constructor(props) {
+                super(props);
+                this.x = props.x;
+                this.y = props.y;
+                this.width = props.w;
+                this.height = props.h;
+                this.color = props.c;
+                this.style = {
+                    backgroundColor: this.color,
+                    position: "absolute",
+                    left: this.x + "px",
+                    top: this.y + "px",
+                    width: this.width + "px",
+                    height: this.height + "px"
+                }
+            }
+
+            render() {
+                return <div style={this.style}></div>;
+            }
+        }
 
         let el = (
             <div>
-                {flg ?
-                    <p style={msg}>{message_true}</p>
-                    :
-                    <p style={msg}>{message_false}</p>
-                }
+                <Rect x="100" y="100" w="100" h="100" c="cyan" />
+                <Rect x="150" y="150" w="100" h="100" c="green" />
             </div>
         );
 
